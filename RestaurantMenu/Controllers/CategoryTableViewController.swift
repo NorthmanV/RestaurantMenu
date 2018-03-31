@@ -10,12 +10,12 @@ import UIKit
 
 class CategoryTableViewController: UITableViewController {
     
-    let menuController = MenuController()
     var categories = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        menuController.fetchCategories { (categories) in
+        navigationItem.backBarButtonItem?.title = "Menu"
+        MenuController.shared.fetchCategories { (categories) in
             if let categories = categories {
                 self.updateUi(with: categories)
             }
@@ -49,6 +49,9 @@ class CategoryTableViewController: UITableViewController {
             let menuTableViewController = segue.destination as! MenuTableViewController
             let index = tableView.indexPathForSelectedRow!.row
             menuTableViewController.category = categories[index]
+            let backItem = UIBarButtonItem()
+            backItem.title = "Menu"
+            navigationItem.backBarButtonItem = backItem
         }
     }
 }

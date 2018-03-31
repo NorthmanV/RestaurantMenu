@@ -9,6 +9,9 @@
 import Foundation
 
 class MenuController {
+    
+    static let shared = MenuController()
+    
     let baseUrl = URL(string: "http://localhost:8090/")!
     
     func fetchCategories(completion: @escaping ([String]?) -> Void) {
@@ -26,7 +29,7 @@ class MenuController {
     func fethcMenuItems(categoryName: String, completion: @escaping ([MenuItem]?) -> Void) {
         let initialMenuUrl = baseUrl.appendingPathComponent("menu")
         var components = URLComponents(url: initialMenuUrl, resolvingAgainstBaseURL: true)!
-        components.queryItems = [URLQueryItem(name: "menu", value: categoryName)]
+        components.queryItems = [URLQueryItem(name: "category", value: categoryName)]
         let menuUrl = components.url!
         let task = URLSession.shared.dataTask(with: menuUrl) { (data, response, error) in
             let jsonDecoder = JSONDecoder()
