@@ -10,6 +10,8 @@ import UIKit
 
 class MenuTableViewController: UITableViewController {
     
+    var category: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never

@@ -44,7 +44,7 @@ class MenuController {
         var request = URLRequest(url: orderUrl)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let data: [String: Any] = ["menuIds": menuIds]
+        let data = ["menuIds": menuIds]
         let jsonEncoder = JSONEncoder()
         let jsonData = try? jsonEncoder.encode(data)
         request.httpBody = jsonData
