@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		879874DA207553B1006E3179 /* AddToOrderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879874D9207553B1006E3179 /* AddToOrderDelegate.swift */; };
 		87B7C0BF206E566500D58BC7 /* MenuItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B7C0BE206E566500D58BC7 /* MenuItemDetailViewController.swift */; };
 		87B7C0C2206E58EF00D58BC7 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B7C0C1206E58EF00D58BC7 /* MenuItem.swift */; };
 		87B7C0C4206E5D0600D58BC7 /* IntermediaryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B7C0C3206E5D0600D58BC7 /* IntermediaryModels.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		879874D9207553B1006E3179 /* AddToOrderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToOrderDelegate.swift; sourceTree = "<group>"; };
 		87B7C0BE206E566500D58BC7 /* MenuItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemDetailViewController.swift; sourceTree = "<group>"; };
 		87B7C0C1206E58EF00D58BC7 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		87B7C0C3206E5D0600D58BC7 /* IntermediaryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediaryModels.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		879874D820755398006E3179 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				879874D9207553B1006E3179 /* AddToOrderDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		87B7C0C0206E58D600D58BC7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +93,7 @@
 		87F1DC77206D84A6007170B5 /* RestaurantMenu */ = {
 			isa = PBXGroup;
 			children = (
+				879874D820755398006E3179 /* Protocols */,
 				87B7C0C5206E5EBD00D58BC7 /* Service */,
 				87B7C0C0206E58D600D58BC7 /* Models */,
 				87F1DC8A206E4C3D007170B5 /* Controllers */,
@@ -178,6 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				879874DA207553B1006E3179 /* AddToOrderDelegate.swift in Sources */,
 				87B7C0C7206E5ED100D58BC7 /* MenuController.swift in Sources */,
 				87B7C0BF206E566500D58BC7 /* MenuItemDetailViewController.swift in Sources */,
 				87F1DC90206E4CC0007170B5 /* OrderTableViewController.swift in Sources */,
