@@ -14,6 +14,8 @@ class OrderTableViewController: UITableViewController, AddToOrderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = editButtonItem
+        editButtonItem.tintColor = .white
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,8 +39,25 @@ class OrderTableViewController: UITableViewController, AddToOrderDelegate {
         let count = menuItems.count
         let indexPath = IndexPath(row: count - 1, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
+        updateBadgeNumber()
     }
-
+    
+    func updateBadgeNumber() {
+        let badgeValue = menuItems.count > 0 ? "\(menuItems.count)" : nil
+        navigationController?.tabBarItem.badgeValue = badgeValue
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            menuItems.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            updateBadgeNumber()
+        }
+    }
 }
 
 
