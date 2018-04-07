@@ -221,11 +221,71 @@
                             <outlet property="delegate" destination="pmx-hU-jnY" id="80f-VD-F6R"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Your Order" id="LHB-4i-bAn"/>
+                    <navigationItem key="navigationItem" title="Your Order" id="LHB-4i-bAn">
+                        <barButtonItem key="rightBarButtonItem" title="Sumbit" id="TY0-YN-aaV">
+                            <connections>
+                                <action selector="submitTapped:" destination="pmx-hU-jnY" id="2Cc-eo-M28"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="rU5-rC-1cx" kind="showDetail" identifier="ConfirmationSegue" id="guL-4c-gRX"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOU-DO-nlY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="553" y="538"/>
+        </scene>
+        <!--Order Confirmation View Controller-->
+        <scene sceneID="IPu-eB-hOd">
+            <objects>
+                <viewController id="rU5-rC-1cx" customClass="OrderConfirmationViewController" customModule="RestaurantMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hbg-ez-H8W">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9i-ut-Q4H">
+                                <rect key="frame" x="8" y="329.5" width="359" height="28"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="20"/>
+                                <color key="textColor" red="0.80784313730000001" green="0.35294117650000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S09-8A-wE5">
+                                <rect key="frame" x="90" y="377.5" width="195" height="35"/>
+                                <color key="backgroundColor" red="0.80784313730000001" green="0.35294117650000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="EHg-yz-ERu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="18"/>
+                                <state key="normal" title="Dismiss">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ZOE-SI-uz3" kind="unwind" identifier="DismissConfirmation" unwindAction="unwindToOrderListWithSegue:" id="e9E-rP-OOE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dnW-dS-cgn" firstAttribute="trailing" secondItem="S09-8A-wE5" secondAttribute="trailing" constant="90" id="LkF-5f-lgK"/>
+                            <constraint firstItem="S09-8A-wE5" firstAttribute="top" secondItem="w9i-ut-Q4H" secondAttribute="bottom" constant="20" id="Oqq-ZF-J8t"/>
+                            <constraint firstItem="w9i-ut-Q4H" firstAttribute="centerY" secondItem="dnW-dS-cgn" secondAttribute="centerY" id="RE3-xz-Ipg"/>
+                            <constraint firstItem="S09-8A-wE5" firstAttribute="leading" secondItem="dnW-dS-cgn" secondAttribute="leading" constant="90" id="THZ-11-Oyt"/>
+                            <constraint firstItem="w9i-ut-Q4H" firstAttribute="centerX" secondItem="dnW-dS-cgn" secondAttribute="centerX" id="icZ-d4-Ro5"/>
+                            <constraint firstItem="w9i-ut-Q4H" firstAttribute="leading" secondItem="dnW-dS-cgn" secondAttribute="leading" constant="8" id="jkZ-57-0ZZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dnW-dS-cgn"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="JO0-8O-kb0"/>
+                    <connections>
+                        <outlet property="timeRemainingLabel" destination="w9i-ut-Q4H" id="mVQ-EF-J8e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zo6-de-jwZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ZOE-SI-uz3" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1329" y="537"/>
         </scene>
         <!--Your Order-->
         <scene sceneID="RR4-iV-buD">
@@ -235,12 +295,14 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VyY-cn-u8n">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.80784313730000001" green="0.35294117650000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>

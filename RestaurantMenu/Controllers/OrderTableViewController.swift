@@ -11,6 +11,7 @@ import UIKit
 class OrderTableViewController: UITableViewController, AddToOrderDelegate {
     
     var menuItems = [MenuItem]()
+    var orderMinutes: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +59,49 @@ class OrderTableViewController: UITableViewController, AddToOrderDelegate {
             updateBadgeNumber()
         }
     }
+    
+    @IBAction func unwindToOrderList(segue: UIStoryboardSegue) {
+        if segue.identifier == "DismissConfirmation" {
+            menuItems.removeAll()
+            tableView.reloadData()
+            updateBadgeNumber()
+        }
+    }
+    
+    @IBAction func submitTapped(_ sender: UIBarButtonItem) {
+        let orderTotal = menuItems.reduce(0.0) { (result, menuItem) -> Double in
+            return result + menuItem.price
+        }
+        let formattedOrder = String(format: "$%.2f", orderTotal)
+        let alert = UIAlertController(title: "Confirm order", message: "You are about to submit your order with a total of \(formattedOrder)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { (action) in
+            self.uploadOrder()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func uploadOrder() {
+        let menuIds = menuItems.map {$0.id}
+        MenuController.shared.submitOrder(menuIds: menuIds) { (minutes) in
+            DispatchQueue.main.async {
+                if let minutes = minutes {
+                    self.orderMinutes = minutes
+                    self.performSegue(withIdentifier: "ConfirmationSegue", sender: nil)
+                }
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ConfirmationSegue" {
+            let orderConfirmationViewController = segue.destination as? OrderConfirmationViewController
+            orderConfirmationViewController?.minutes = orderMinutes
+        }
+    }
+    
 }
+
 
 
 
