@@ -33,6 +33,12 @@ class OrderTableViewController: UITableViewController, AddToOrderDelegate {
         let menuItem = menuItems[indexPath.row]
         cell.textLabel?.text = menuItem.name
         cell.detailTextLabel?.text = String(format: "$%.2f", menuItem.price)
+        MenuController.shared.fetchImage(url: menuItem.imageUrl) { (image) in
+            guard let image = image else {return}
+            DispatchQueue.main.async {
+                cell.imageView?.image = image
+            }
+        }
     }
     
     func added(menuItem: MenuItem) {
@@ -58,6 +64,10 @@ class OrderTableViewController: UITableViewController, AddToOrderDelegate {
             tableView.deleteRows(at: [indexPath], with: .fade)
             updateBadgeNumber()
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
     
     @IBAction func unwindToOrderList(segue: UIStoryboardSegue) {
